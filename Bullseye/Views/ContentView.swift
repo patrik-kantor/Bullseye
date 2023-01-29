@@ -28,9 +28,11 @@ struct ContentView: View {
             HStack {
                 Text("1")
                     .bold()
+                    .padding(5)
                 Slider(value: $sliderValue, in: 1.0...100.0)
                 Text("100")
                     .bold()
+                    .padding(5)
             }
             Button("Hit me") {
                 alertIsVisible = true
