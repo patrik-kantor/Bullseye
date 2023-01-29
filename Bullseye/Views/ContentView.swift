@@ -15,12 +15,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("🎯🎯🎯\nPUT THE BULLSEYE AS CLOSE AS YOU CAN TO")
+            Text("🎯🎯🎯\nPut the Bullseye as close as you can to".uppercased())
                 .bold()
                 .kerning(2.0)
                 .multilineTextAlignment(.center)
                 .lineSpacing(4.0)
                 .font(.footnote)
+                .padding(.leading, 30.0)
+                .padding(.trailing, 30.0)
             Text(String(game.target))
                 .kerning(-1.0)
                 .font(.largeTitle)
@@ -28,21 +30,28 @@ struct ContentView: View {
             HStack {
                 Text("1")
                     .bold()
-                    .padding(5)
                 Slider(value: $sliderValue, in: 1.0...100.0)
                 Text("100")
                     .bold()
-                    .padding(5)
             }
-            Button("Hit me") {
+                .padding()
+            Button {
                 alertIsVisible = true
+            } label: {
+                Text("Hit me".uppercased())
+                    .bold()
+                    .font(.title3)
             }
-            .alert("Hello there!", isPresented: $alertIsVisible) {
-              Button("Awesome!") { }
-            } message: {
-              let roundedValue = Int(sliderValue.rounded())
-                Text("The slider's value is \(roundedValue).\n" + "You scored \(game.points(sliderValue: roundedValue)) points this round.")
-            }
+                .padding(20.0)
+                .background(Color.blue)
+                .foregroundColor(Color.white)
+                .cornerRadius(21.0)
+                .alert("Hello there!", isPresented: $alertIsVisible) {
+                  Button("Awesome!") { }
+                } message: {
+                  let roundedValue = Int(sliderValue.rounded())
+                    Text("The slider's value is \(roundedValue).\n" + "You scored \(game.points(sliderValue: roundedValue)) points this round.")
+                }
         }
     }
 }
