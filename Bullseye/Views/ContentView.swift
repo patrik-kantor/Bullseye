@@ -15,8 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color("BackgroundColor")
-                .edgesIgnoringSafeArea(.all)
+            BackgroundView(game: $game)
             VStack {
                 InstructionsView(game: $game)
                 SliderView(sliderValue: $sliderValue)
@@ -80,6 +79,10 @@ struct HitMeButton: View {
             )
             .foregroundColor(Color.white)
             .cornerRadius(21.0)
+            .overlay(
+                RoundedRectangle(cornerRadius: 21.0)
+                    .strokeBorder(Color.white, lineWidth: 2.0)
+            )
     }
 }
 
@@ -87,6 +90,6 @@ struct HitMeButton: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-        ContentView()
+        ContentView().preferredColorScheme(.dark)
     }
 }
